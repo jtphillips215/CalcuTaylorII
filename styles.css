@@ -2,3 +2,22 @@ body {
   margin: 0;
   Padding: 0;
 }
+
+#title {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+#controls {
+  display: flex;
+}
+
+.button-column {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+footer {
+  text-align: center;
+}
