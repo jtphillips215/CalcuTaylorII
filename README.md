@@ -1,2 +1,3 @@
 # CalcuTaylorII
-A caclulator made with vanilla html, css, and js as a capstone for TOP fundamentals course
+
+This is a vanilla HTML, CSS, and JS remake of a project originally completed for Android last year.
