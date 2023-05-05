@@ -1,5 +1,11 @@
 "use strict";
 
+// variables needed for functionality of site
+let firstNumber = 0;
+let secondNumber = 0;
+let operator = "";
+let displayValue = "0";
+
 // mathmatic operations
 function addition(firstNumber, secondNumber) {
   return firstNumber + secondNumber;
