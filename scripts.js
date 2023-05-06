@@ -28,6 +28,14 @@ function percentage(firstNumber, secondNumber) {
   return (firstNumber / 100) * secondNumber;
 }
 
+// clearing data between calculations
+function stateReset(operator, firstNumber, secondNumber) {
+  operator = "";
+  firstNumber = "";
+  secondNumber = "";
+  return;
+}
+
 // calculate called by on click listener for equals sign
 function calculate(operator, firstNumber, secondNumber) {
   let result;
@@ -65,3 +73,24 @@ function calculate(operator, firstNumber, secondNumber) {
   console.table(calcHistory);
   return result;
 }
+
+// creating programatic access to on screen elemets
+const txtOutput = document.querySelector("#output");
+const btnZero = document.querySelector("#zero");
+const btnOne = document.querySelector("#one");
+const btnTwo = document.querySelector("#two");
+const btnThree = document.querySelector("#three");
+const btnFour = document.querySelector("#four");
+const btnFive = document.querySelector("#five");
+const btnSix = document.querySelector("#six");
+const btnSeven = document.querySelector("#seven");
+const btnEight = document.querySelector("#eight");
+const btnNine = document.querySelector("#nine");
+const btnFlipSign = document.querySelector("#flip-sign");
+const btnPct = document.querySelector("#percentage");
+const btnDivide = document.querySelector("#divide");
+const btnDecimal = document.querySelector("#decimal");
+const btnMultiply = document.querySelector("#multiply");
+const btnSubtract = document.querySelector("#subtract");
+const btnAdd = document.querySelector("#add");
+const btnEquals = document.querySelector("#btn-equal");
