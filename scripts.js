@@ -5,6 +5,7 @@ let firstNumber = 0;
 let secondNumber = 0;
 let operator = "";
 let displayValue = "0";
+let calcHistory = [];
 
 // mathmatic operations
 function addition(firstNumber, secondNumber) {
@@ -51,7 +52,16 @@ function calculate(operator, firstNumber, secondNumber) {
       result = percentage(firstNumber, secondNumber);
       break;
     default:
+      console.error("An Error occured:", firstNumber, operator, secondNumber);
       break;
   }
+  const calculation = {
+    firstNumber: firstNumber,
+    operator: operator,
+    secondNumber: secondNumber,
+    result: result,
+  };
+  calcHistory.push(calculation);
+  console.table(calcHistory);
   return result;
 }
