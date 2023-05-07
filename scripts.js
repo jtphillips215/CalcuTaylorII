@@ -105,9 +105,23 @@ function operatorClickEvent(calculation, button) {
   return;
 }
 
+function flipSignClickEvent(calculation) {
+  if (calculation.operator == "") {
+    //
+  } else {
+    //
+  }
+}
+
+function decimalClickEvent(calculation) {
+  //
+}
+
 // creating programatic access to on screen elemets
 // on click listener for those elements
 const txtOutput = document.querySelector("#output");
+
+// number buttons
 const btnZero = document.querySelector("#zero");
 btnZero.addEventListener("click", numberClickEvent(calculation, "0"));
 const btnOne = document.querySelector("#one");
@@ -128,6 +142,8 @@ const btnEight = document.querySelector("#eight");
 btnEight.addEventListener("click", numberClickEvent(calculation, "8"));
 const btnNine = document.querySelector("#nine");
 btnNine.addEventListener("click", numberClickEvent(calculation, "9"));
+
+// operator buttons
 const btnPct = document.querySelector("#percentage");
 btnPct.addEventListener("click", operatorClickEvent(calculation, "%"));
 const btnDivide = document.querySelector("#divide");
@@ -138,6 +154,15 @@ const btnSubtract = document.querySelector("#subtract");
 btnSubtract.addEventListener("click", operatorClickEvent(calculation, "-"));
 const btnAdd = document.querySelector("#add");
 btnAdd.addEventListener("click", operatorClickEvent(calculation, "+"));
+
+// misc buttons
 const btnFlipSign = document.querySelector("#flip-sign");
+btnFlipSign.addEventListener("click", flipSignClickEvent(calculation));
 const btnDecimal = document.querySelector("#decimal");
+btnDecimal.addEventListener("click", decimalClickEvent(calculation));
 const btnEquals = document.querySelector("#btn-equal");
+btnEquals.addEventListener("click", () => {
+  if (calculation.firstNumber != "" && calculation.secondNumber != "") {
+    calculate(calculation);
+  }
+});
