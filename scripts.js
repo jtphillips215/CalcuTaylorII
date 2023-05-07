@@ -1,74 +1,84 @@
 "use strict";
 
 // variables needed for functionality of site
-let firstNumber = 0;
-let secondNumber = 0;
-let operator = "";
+let calculation = {
+  firstNumber: 0,
+  secondNumber: 0,
+  operator: "",
+  result: 0,
+};
 let displayValue = "0";
 let calcHistory = [];
 
 // mathmatic operations
-function addition(firstNumber, secondNumber) {
-  return firstNumber + secondNumber;
+function addition(calculation) {
+  calculation.result = calculation.firstNumber + calculation.secondNumber;
+  return;
 }
 
-function subtraction(firstNumber, secondNumber) {
-  return firstNumber - secondNumber;
+function subtraction(calculation) {
+  calculation.result = calculation.firstNumber - calculation.secondNumber;
+  return;
 }
 
-function multiplication(firstNumber, secondNumber) {
-  return firstNumber * secondNumber;
+function multiplication(calculation) {
+  calculation.result = calculation.firstNumber * calculation.secondNumber;
+  return;
 }
 
-function division(firstNumber, secondNumber) {
-  return firstNumber / secondNumber;
+function division(calculation) {
+  calculation.result = calculation.firstNumber / calculation.secondNumber;
+  return;
 }
 
-function percentage(firstNumber, secondNumber) {
-  return (firstNumber / 100) * secondNumber;
+function percentage(calculation) {
+  calculation.result =
+    (calculation.firstNumber / 100) * calculation.secondNumber;
+  return;
 }
 
 // clearing data between calculations
-function stateReset(operator, firstNumber, secondNumber) {
-  operator = "";
-  firstNumber = "";
-  secondNumber = "";
+function stateReset(calculation) {
+  calculation.operator = "";
+  calculation.firstNumber = 0;
+  calculation.secondNumber = 0;
+  calculation.result = 0;
   return;
 }
 
 // calculate called by on click listener for equals sign
-function calculate(operator, firstNumber, secondNumber) {
+function calculate(calculation) {
   let result;
-  switch (operator) {
+  switch (calculation.operator) {
     case "+":
-      result = addition(firstNumber, secondNumber);
+      addition(calculation);
       break;
     case "-":
-      result = subtraction(firstNumber, secondNumber);
+      subtraction(calculation);
       break;
     case "*":
-      result = multiplication(firstNumber, secondNumber);
+      multiplication(calculation);
       break;
     case "/":
       if (secondNumber != 0) {
-        result = division(firstNumber, secondNumber);
+        division(calculation);
         break;
       } else {
-        result = "Div by Zero Error";
+        calculation.result = "Div by Zero Error";
       }
     case "%":
-      result = percentage(firstNumber, secondNumber);
+      percentage(calculation);
       break;
     default:
-      console.error("An Error occured:", firstNumber, operator, secondNumber);
+      console.error(
+        "An Error occured:",
+        calculation.firstNumber,
+        calculation.operator,
+        calculation.secondNumber
+      );
       break;
   }
-  const calculation = {
-    firstNumber: firstNumber,
-    operator: operator,
-    secondNumber: secondNumber,
-    result: result,
-  };
+
   calcHistory.push(calculation);
   console.table(calcHistory);
   return result;
