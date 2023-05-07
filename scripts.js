@@ -89,12 +89,19 @@ function calculate(calculation) {
   return result;
 }
 
+// function for number click events as it's a reusable and repeatable event
 function numberClickEvent(calculation, button) {
   if (calculation.operator == "") {
     calculation.firstNumber += button;
   } else {
     secondNumber += button;
   }
+  return;
+}
+
+// function for operator signs as it's a reusable and repeatable event
+function operatorClickEvent(calculation, button) {
+  calculation.operator = button;
   return;
 }
 
@@ -121,11 +128,16 @@ const btnEight = document.querySelector("#eight");
 btnEight.addEventListener("click", numberClickEvent(calculation, "8"));
 const btnNine = document.querySelector("#nine");
 btnNine.addEventListener("click", numberClickEvent(calculation, "9"));
-const btnFlipSign = document.querySelector("#flip-sign");
 const btnPct = document.querySelector("#percentage");
+btnPct.addEventListener("click", operatorClickEvent(calculation, "%"));
 const btnDivide = document.querySelector("#divide");
-const btnDecimal = document.querySelector("#decimal");
+btnDivide.addEventListener("click", operatorClickEvent(calculation, "/"));
 const btnMultiply = document.querySelector("#multiply");
+btnMultiply.addEventListener("click", operatorClickEvent(calculation, "*"));
 const btnSubtract = document.querySelector("#subtract");
+btnSubtract.addEventListener("click", operatorClickEvent(calculation, "-"));
 const btnAdd = document.querySelector("#add");
+btnAdd.addEventListener("click", operatorClickEvent(calculation, "+"));
+const btnFlipSign = document.querySelector("#flip-sign");
+const btnDecimal = document.querySelector("#decimal");
 const btnEquals = document.querySelector("#btn-equal");
