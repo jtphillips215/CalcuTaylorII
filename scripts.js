@@ -9,7 +9,9 @@ let display = "";
 let calcHistory = [];
 
 // mathmatic operations
-function addition() {}
+function addition() {
+  return Number(firstNumber) + Number(secondNumber);
+}
 
 function subtraction() {
   return Number(firstNumber) - Number(secondNumber);
@@ -40,23 +42,23 @@ function stateReset() {
 function calculate() {
   switch (operator) {
     case "+":
-      addition();
+      result = addition();
       break;
     case "-":
-      subtraction();
+      result = subtraction();
       break;
     case "*":
-      multiplication();
+      result = multiplication();
       break;
     case "/":
       if (secondNumber != 0) {
-        division();
+        result = division();
         break;
       } else {
         result = "Div by Zero Error";
       }
     case "%":
-      percentage();
+      result = percentage();
       break;
     default:
       console.error(
@@ -69,10 +71,10 @@ function calculate() {
       break;
   }
   const calculation = {
-    firstNumber: "",
-    secondNumber: "",
-    operator: "",
-    result: "",
+    firstNumber: firstNumber,
+    operator: operator,
+    secondNumber: secondNumber,
+    result: result,
   };
   calcHistory.push(calculation);
   console.table(calcHistory);
@@ -112,18 +114,11 @@ function decimalClickEvent() {
 }
 
 function updateUI() {
-  if (operator == "") {
-    txtOutput.textContent = `${firstNumber}`;
-  }
-  if (operator != "") {
-    txtOutput.textContent += ` ${operator}`;
-  }
-  if (secondNumber != "") {
-    txtOutput.textContent += ` ${secondNumber}`;
-  }
+  display = `${firstNumber} ${operator} ${secondNumber}`;
   if (result != "") {
-    txtOutput.textContent += ` ${result}`;
+    display += ` = ${result}`;
   }
+  txtOutput.textContent = display;
 }
 
 // creating programatic access to on screen elemets
@@ -176,7 +171,7 @@ const btnDecimal = document.querySelector("#decimal");
 btnDecimal.addEventListener("click", () => decimalClickEvent());
 const btnEquals = document.querySelector("#btn-equal");
 btnEquals.addEventListener("click", () => {
-  if (firstNumber != "" && secondNumber != "") {
+  if (secondNumber != "") {
     calculate();
   }
 });
