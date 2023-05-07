@@ -94,7 +94,7 @@ function numberClickEvent(calculation, button) {
   if (calculation.operator == "") {
     calculation.firstNumber += `${button}`;
   } else {
-    secondNumber += `${button}`;
+    calculation.secondNumber += `${button}`;
   }
   updateUI(calculation);
   return;
@@ -103,7 +103,11 @@ function numberClickEvent(calculation, button) {
 // function for operator signs as it's a reusable and repeatable event
 function operatorClickEvent(calculation, button) {
   console.log(button);
-  calculation.operator = `${button}`;
+  if (calculation.operator == "") {
+    calculation.operator = `${button}`;
+  } else {
+    calculation.operator = `${button}`;
+  }
   updateUI(calculation);
   return;
 }
