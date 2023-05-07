@@ -102,6 +102,7 @@ function operatorClickEvent(button) {
 }
 
 function decimalClickEvent() {
+  // maybe switch to operator? Maybe add zero before decimal on display?
   if (secondNumber != "") {
     if (secondNumber.includes(".")) {
       return;
@@ -115,6 +116,25 @@ function decimalClickEvent() {
     retrun;
   } else {
     firstNumber += ".";
+    updateUI();
+    return;
+  }
+}
+
+function deleteClickEvent() {
+  if (firstNumber == "" && secondNumber == "") {
+    return;
+  } else if (secondNumber != "") {
+    const replacementString = secondNumber.substring(
+      0,
+      secondNumber.length - 1
+    );
+    secondNumber = replacementString;
+    updateUI();
+    return;
+  } else {
+    const replacementString = firstNumber.substring(0, firstNumber.length - 1);
+    firstNumber = replacementString;
     updateUI();
     return;
   }
@@ -172,6 +192,8 @@ btnClear.addEventListener("click", () => {
   stateReset();
   updateUI();
 });
+const btnDelete = document.querySelector("#delete");
+btnDelete.addEventListener("click", () => deleteClickEvent());
 const btnDecimal = document.querySelector("#decimal");
 btnDecimal.addEventListener("click", () => decimalClickEvent());
 const btnEquals = document.querySelector("#btn-equal");
