@@ -110,7 +110,22 @@ function flipSignClickEvent() {
 }
 
 function decimalClickEvent() {
-  //
+  if (secondNumber != "") {
+    if (secondNumber.includes(".")) {
+      return;
+    } else {
+      secondNumber += ".";
+      updateUI();
+      return;
+    }
+  }
+  if (firstNumber.includes(".")) {
+    retrun;
+  } else {
+    firstNumber += ".";
+    updateUI();
+    return;
+  }
 }
 
 function updateUI() {
