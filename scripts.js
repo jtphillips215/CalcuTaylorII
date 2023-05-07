@@ -1,141 +1,128 @@
 "use strict";
 
 // variables needed for functionality of site
-const calculation = {
-  firstNumber: "",
-  secondNumber: "",
-  operator: "",
-  result: "",
-};
+let firstNumber = "";
+let secondNumber = "";
+let operator = "";
+let result = "";
+let display = "";
 let calcHistory = [];
 
 // mathmatic operations
-function addition(calculation) {
-  calculation.result =
-    Number(calculation.firstNumber) + Number(calculation.secondNumber);
-  return;
+function addition() {}
+
+function subtraction() {
+  return Number(firstNumber) - Number(secondNumber);
 }
 
-function subtraction(calculation) {
-  calculation.result =
-    Number(calculation.firstNumber) - Number(calculation.secondNumber);
-  return;
+function multiplication() {
+  return Number(firstNumber) * Number(secondNumber);
 }
 
-function multiplication(calculation) {
-  calculation.result =
-    Number(calculation.firstNumber) * Number(calculation.secondNumber);
-  return;
+function division() {
+  return Number(firstNumber) / Number(secondNumber);
 }
 
-function division(calculation) {
-  calculation.result =
-    Number(calculation.firstNumber) / Number(calculation.secondNumber);
-  return;
-}
-
-function percentage(calculation) {
-  calculation.result =
-    (Number(calculation.firstNumber) / 100) * Number(calculation.secondNumber);
-  return;
+function percentage() {
+  return (Number(firstNumber) / 100) * Number(secondNumber);
 }
 
 // clearing data between calculations
-function stateReset(calculation) {
-  calculation.operator = "";
-  calculation.firstNumber = "";
-  calculation.secondNumber = "";
-  calculation.result = "";
+function stateReset() {
+  operator = "";
+  firstNumber = "";
+  secondNumber = "";
+  result = "";
   return;
 }
 
 // calculate called by on click listener for equals sign
-function calculate(calculation) {
-  switch (calculation.operator) {
+function calculate() {
+  switch (operator) {
     case "+":
-      addition(calculation);
+      addition();
       break;
     case "-":
-      subtraction(calculation);
+      subtraction();
       break;
     case "*":
-      multiplication(calculation);
+      multiplication();
       break;
     case "/":
       if (secondNumber != 0) {
-        division(calculation);
+        division();
         break;
       } else {
-        calculation.result = "Div by Zero Error";
+        result = "Div by Zero Error";
       }
     case "%":
-      percentage(calculation);
+      percentage();
       break;
     default:
       console.error(
         "An Error occured:",
-        calculation.firstNumber,
-        calculation.operator,
-        calculation.secondNumber
+        firstNumber,
+        operator,
+        secondNumber,
+        result
       );
       break;
   }
-
+  const calculation = {
+    firstNumber: "",
+    secondNumber: "",
+    operator: "",
+    result: "",
+  };
   calcHistory.push(calculation);
   console.table(calcHistory);
-  stateReset(calculation);
-  updateUI(calculation);
+  updateUI();
+  stateReset();
   return;
 }
 
 // function for number click events as it's a reusable and repeatable event
-function numberClickEvent(calculation, button) {
-  console.log(button);
-  if (calculation.operator == "") {
-    calculation.firstNumber += `${button}`;
+function numberClickEvent(button) {
+  if (operator == "") {
+    firstNumber += `${button}`;
   } else {
-    calculation.secondNumber += `${button}`;
+    secondNumber += `${button}`;
   }
-  updateUI(calculation);
+  updateUI();
   return;
 }
 
 // function for operator signs as it's a reusable and repeatable event
-function operatorClickEvent(calculation, button) {
-  console.log(button);
-  if (calculation.operator == "") {
-    calculation.operator = `${button}`;
-  } else {
-    calculation.operator = `${button}`;
-  }
-  updateUI(calculation);
+function operatorClickEvent(button) {
+  operator = `${button}`;
+  updateUI();
   return;
 }
 
-function flipSignClickEvent(calculation) {
-  if (calculation.operator == "") {
+function flipSignClickEvent() {
+  if (operator == "") {
     //
   } else {
     //
   }
 }
 
-function decimalClickEvent(calculation) {
+function decimalClickEvent() {
   //
 }
 
-function updateUI(calculation) {
-  if (calculation.operator == "") {
-    txtOutput.textContent = `${calculation.firstNumber}`;
+function updateUI() {
+  if (operator == "") {
+    txtOutput.textContent = `${firstNumber}`;
   }
-  if (calculation.operator != "") {
-    txtOutput.textContent += ` ${calculation.operator}`;
+  if (operator != "") {
+    txtOutput.textContent += ` ${operator}`;
   }
-  if (calculation.secondNumber != "") {
-    txtOutput.textContent += ` ${calculation.secondNumber}`;
+  if (secondNumber != "") {
+    txtOutput.textContent += ` ${secondNumber}`;
   }
-  if (calculation.result != "") {
-    txtOutput.textContent += ` ${calculation.result}`;
+  if (result != "") {
+    txtOutput.textContent += ` ${result}`;
   }
 }
 
@@ -145,56 +132,51 @@ const txtOutput = document.querySelector("#output");
 
 // number buttons
 const btnZero = document.querySelector("#zero");
-btnZero.addEventListener("click", () => numberClickEvent(calculation, "0"));
+btnZero.addEventListener("click", () => numberClickEvent("0"));
 const btnOne = document.querySelector("#one");
-btnOne.addEventListener("click", () => numberClickEvent(calculation, "1"));
+btnOne.addEventListener("click", () => numberClickEvent("1"));
 const btnTwo = document.querySelector("#two");
-btnTwo.addEventListener("click", () => numberClickEvent(calculation, "2"));
+btnTwo.addEventListener("click", () => numberClickEvent("2"));
 const btnThree = document.querySelector("#three");
-btnThree.addEventListener("click", () => numberClickEvent(calculation, "3"));
+btnThree.addEventListener("click", () => numberClickEvent("3"));
 const btnFour = document.querySelector("#four");
-btnFour.addEventListener("click", () => numberClickEvent(calculation, "4"));
+btnFour.addEventListener("click", () => numberClickEvent("4"));
 const btnFive = document.querySelector("#five");
-btnFive.addEventListener("click", () => numberClickEvent(calculation, "5"));
+btnFive.addEventListener("click", () => numberClickEvent("5"));
 const btnSix = document.querySelector("#six");
-btnSix.addEventListener("click", () => numberClickEvent(calculation, "6"));
+btnSix.addEventListener("click", () => numberClickEvent("6"));
 const btnSeven = document.querySelector("#seven");
-btnSeven.addEventListener("click", () => numberClickEvent(calculation, "7"));
+btnSeven.addEventListener("click", () => numberClickEvent("7"));
 const btnEight = document.querySelector("#eight");
-btnEight.addEventListener("click", () => numberClickEvent(calculation, "8"));
+btnEight.addEventListener("click", () => numberClickEvent("8"));
 const btnNine = document.querySelector("#nine");
-btnNine.addEventListener("click", () => numberClickEvent(calculation, "9"));
+btnNine.addEventListener("click", () => numberClickEvent("9"));
 
 // operator buttons
 const btnPct = document.querySelector("#percentage");
-btnPct.addEventListener("click", () => operatorClickEvent(calculation, "%"));
+btnPct.addEventListener("click", () => operatorClickEvent("%"));
 const btnDivide = document.querySelector("#divide");
-btnDivide.addEventListener("click", () => operatorClickEvent(calculation, "/"));
+btnDivide.addEventListener("click", () => operatorClickEvent("/"));
 const btnMultiply = document.querySelector("#multiply");
-btnMultiply.addEventListener("click", () =>
-  operatorClickEvent(calculation, "*")
-);
+btnMultiply.addEventListener("click", () => operatorClickEvent("*"));
 const btnSubtract = document.querySelector("#subtract");
-btnSubtract.addEventListener("click", () =>
-  operatorClickEvent(calculation, "-")
-);
+btnSubtract.addEventListener("click", () => operatorClickEvent("-"));
 const btnAdd = document.querySelector("#add");
-btnAdd.addEventListener("click", () => operatorClickEvent(calculation, "+"));
+btnAdd.addEventListener("click", () => operatorClickEvent("+"));
 
 // misc buttons
 const btnClear = document.querySelector("#clear");
 btnClear.addEventListener("click", () => {
-  stateReset(calculation);
-  updateUI(calculation);
+  stateReset();
+  updateUI();
 });
 const btnFlipSign = document.querySelector("#flip-sign");
-btnFlipSign.addEventListener("click", () => flipSignClickEvent(calculation));
+btnFlipSign.addEventListener("click", () => flipSignClickEvent());
 const btnDecimal = document.querySelector("#decimal");
-btnDecimal.addEventListener("click", () => decimalClickEvent(calculation));
+btnDecimal.addEventListener("click", () => decimalClickEvent());
 const btnEquals = document.querySelector("#btn-equal");
 btnEquals.addEventListener("click", () => {
-  if (calculation.firstNumber != "" && calculation.secondNumber != "") {
-    calculate(calculation);
-    updateUI(calculation);
+  if (firstNumber != "" && secondNumber != "") {
+    calculate();
   }
 });
