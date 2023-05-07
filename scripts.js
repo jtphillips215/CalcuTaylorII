@@ -7,7 +7,6 @@ let calculation = {
   operator: "",
   result: "0",
 };
-let displayValue = "0";
 let calcHistory = [];
 
 // mathmatic operations
@@ -52,7 +51,6 @@ function stateReset(calculation) {
 
 // calculate called by on click listener for equals sign
 function calculate(calculation) {
-  let result;
   switch (calculation.operator) {
     case "+":
       addition(calculation);
@@ -86,7 +84,8 @@ function calculate(calculation) {
   calcHistory.push(calculation);
   console.table(calcHistory);
   stateReset(calculation);
-  return result;
+  updateUI(calculation);
+  return;
 }
 
 // function for number click events as it's a reusable and repeatable event
@@ -96,12 +95,14 @@ function numberClickEvent(calculation, button) {
   } else {
     secondNumber += button;
   }
+  updateUI(calculation);
   return;
 }
 
 // function for operator signs as it's a reusable and repeatable event
 function operatorClickEvent(calculation, button) {
   calculation.operator = button;
+  updateUI(calculation);
   return;
 }
 
@@ -115,6 +116,21 @@ function flipSignClickEvent(calculation) {
 
 function decimalClickEvent(calculation) {
   //
+}
+
+function updateUI() {
+  if (calculation.operator == "") {
+    txtOutput.textContent = `${calculation.firstNumber}`;
+  }
+  if (calculation.operator != "") {
+    txtOutput.textContent += ` ${calculation.operator}`;
+  }
+  if (calculation.secondNumber != "") {
+    txtOutput.textContent += ` ${calculation.secondNumber}`;
+  }
+  if (calculation.result != "") {
+    txtOutput.textContent += ` ${calculation.result}`;
+  }
 }
 
 // creating programatic access to on screen elemets
@@ -156,6 +172,11 @@ const btnAdd = document.querySelector("#add");
 btnAdd.addEventListener("click", operatorClickEvent(calculation, "+"));
 
 // misc buttons
+const btnClear = document.querySelector("#clear");
+btnClear.addEventListener("click", () => {
+  stateReset(calculation);
+  updateUI(calculation);
+});
 const btnFlipSign = document.querySelector("#flip-sign");
 btnFlipSign.addEventListener("click", flipSignClickEvent(calculation));
 const btnDecimal = document.querySelector("#decimal");
@@ -164,5 +185,6 @@ const btnEquals = document.querySelector("#btn-equal");
 btnEquals.addEventListener("click", () => {
   if (calculation.firstNumber != "" && calculation.secondNumber != "") {
     calculate(calculation);
+    updateUI(calculation);
   }
 });
