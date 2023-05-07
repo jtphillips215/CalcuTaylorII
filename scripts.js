@@ -1,11 +1,11 @@
 "use strict";
 
 // variables needed for functionality of site
-let calculation = {
-  firstNumber: "0",
-  secondNumber: "0",
+const calculation = {
+  firstNumber: "",
+  secondNumber: "",
   operator: "",
-  result: "0",
+  result: "",
 };
 let calcHistory = [];
 
@@ -43,9 +43,9 @@ function percentage(calculation) {
 // clearing data between calculations
 function stateReset(calculation) {
   calculation.operator = "";
-  calculation.firstNumber = "0";
-  calculation.secondNumber = "0";
-  calculation.result = "0";
+  calculation.firstNumber = "";
+  calculation.secondNumber = "";
+  calculation.result = "";
   return;
 }
 
@@ -90,10 +90,11 @@ function calculate(calculation) {
 
 // function for number click events as it's a reusable and repeatable event
 function numberClickEvent(calculation, button) {
+  console.log(button);
   if (calculation.operator == "") {
-    calculation.firstNumber += button;
+    calculation.firstNumber += `${button}`;
   } else {
-    secondNumber += button;
+    secondNumber += `${button}`;
   }
   updateUI(calculation);
   return;
@@ -101,7 +102,8 @@ function numberClickEvent(calculation, button) {
 
 // function for operator signs as it's a reusable and repeatable event
 function operatorClickEvent(calculation, button) {
-  calculation.operator = button;
+  console.log(button);
+  calculation.operator = `${button}`;
   updateUI(calculation);
   return;
 }
@@ -118,7 +120,7 @@ function decimalClickEvent(calculation) {
   //
 }
 
-function updateUI() {
+function updateUI(calculation) {
   if (calculation.operator == "") {
     txtOutput.textContent = `${calculation.firstNumber}`;
   }
@@ -139,37 +141,41 @@ const txtOutput = document.querySelector("#output");
 
 // number buttons
 const btnZero = document.querySelector("#zero");
-btnZero.addEventListener("click", numberClickEvent(calculation, "0"));
+btnZero.addEventListener("click", () => numberClickEvent(calculation, "0"));
 const btnOne = document.querySelector("#one");
-btnOne.addEventListener("click", numberClickEvent(calculation, "1"));
+btnOne.addEventListener("click", () => numberClickEvent(calculation, "1"));
 const btnTwo = document.querySelector("#two");
-btnTwo.addEventListener("click", numberClickEvent(calculation, "2"));
+btnTwo.addEventListener("click", () => numberClickEvent(calculation, "2"));
 const btnThree = document.querySelector("#three");
-btnThree.addEventListener("click", numberClickEvent(calculation, "3"));
+btnThree.addEventListener("click", () => numberClickEvent(calculation, "3"));
 const btnFour = document.querySelector("#four");
-btnFour.addEventListener("click", numberClickEvent(calculation, "4"));
+btnFour.addEventListener("click", () => numberClickEvent(calculation, "4"));
 const btnFive = document.querySelector("#five");
-btnFive.addEventListener("click", numberClickEvent(calculation, "5"));
+btnFive.addEventListener("click", () => numberClickEvent(calculation, "5"));
 const btnSix = document.querySelector("#six");
-btnSix.addEventListener("click", numberClickEvent(calculation, "6"));
+btnSix.addEventListener("click", () => numberClickEvent(calculation, "6"));
 const btnSeven = document.querySelector("#seven");
-btnSeven.addEventListener("click", numberClickEvent(calculation, "7"));
+btnSeven.addEventListener("click", () => numberClickEvent(calculation, "7"));
 const btnEight = document.querySelector("#eight");
-btnEight.addEventListener("click", numberClickEvent(calculation, "8"));
+btnEight.addEventListener("click", () => numberClickEvent(calculation, "8"));
 const btnNine = document.querySelector("#nine");
-btnNine.addEventListener("click", numberClickEvent(calculation, "9"));
+btnNine.addEventListener("click", () => numberClickEvent(calculation, "9"));
 
 // operator buttons
 const btnPct = document.querySelector("#percentage");
-btnPct.addEventListener("click", operatorClickEvent(calculation, "%"));
+btnPct.addEventListener("click", () => operatorClickEvent(calculation, "%"));
 const btnDivide = document.querySelector("#divide");
-btnDivide.addEventListener("click", operatorClickEvent(calculation, "/"));
+btnDivide.addEventListener("click", () => operatorClickEvent(calculation, "/"));
 const btnMultiply = document.querySelector("#multiply");
-btnMultiply.addEventListener("click", operatorClickEvent(calculation, "*"));
+btnMultiply.addEventListener("click", () =>
+  operatorClickEvent(calculation, "*")
+);
 const btnSubtract = document.querySelector("#subtract");
-btnSubtract.addEventListener("click", operatorClickEvent(calculation, "-"));
+btnSubtract.addEventListener("click", () =>
+  operatorClickEvent(calculation, "-")
+);
 const btnAdd = document.querySelector("#add");
-btnAdd.addEventListener("click", operatorClickEvent(calculation, "+"));
+btnAdd.addEventListener("click", () => operatorClickEvent(calculation, "+"));
 
 // misc buttons
 const btnClear = document.querySelector("#clear");
@@ -178,9 +184,9 @@ btnClear.addEventListener("click", () => {
   updateUI(calculation);
 });
 const btnFlipSign = document.querySelector("#flip-sign");
-btnFlipSign.addEventListener("click", flipSignClickEvent(calculation));
+btnFlipSign.addEventListener("click", () => flipSignClickEvent(calculation));
 const btnDecimal = document.querySelector("#decimal");
-btnDecimal.addEventListener("click", decimalClickEvent(calculation));
+btnDecimal.addEventListener("click", () => decimalClickEvent(calculation));
 const btnEquals = document.querySelector("#btn-equal");
 btnEquals.addEventListener("click", () => {
   if (calculation.firstNumber != "" && calculation.secondNumber != "") {
