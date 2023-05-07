@@ -103,10 +103,13 @@ function operatorClickEvent(button) {
 
 function decimalClickEvent() {
   // maybe switch to operator? Maybe add zero before decimal on display?
-  if (secondNumber != "") {
+  if (operator != "") {
     if (secondNumber.includes(".")) {
       return;
     } else {
+      if (secondNumber == "") {
+        secondNumber += "0";
+      }
       secondNumber += ".";
       updateUI();
       return;
@@ -115,6 +118,9 @@ function decimalClickEvent() {
   if (firstNumber.includes(".")) {
     retrun;
   } else {
+    if (firstNumber == "") {
+      firstNumber += "0";
+    }
     firstNumber += ".";
     updateUI();
     return;
