@@ -101,14 +101,6 @@ function operatorClickEvent(button) {
   return;
 }
 
-function flipSignClickEvent() {
-  if (operator == "") {
-    //
-  } else {
-    //
-  }
-}
-
 function decimalClickEvent() {
   if (secondNumber != "") {
     if (secondNumber.includes(".")) {
@@ -180,8 +172,6 @@ btnClear.addEventListener("click", () => {
   stateReset();
   updateUI();
 });
-const btnFlipSign = document.querySelector("#flip-sign");
-btnFlipSign.addEventListener("click", () => flipSignClickEvent());
 const btnDecimal = document.querySelector("#decimal");
 btnDecimal.addEventListener("click", () => decimalClickEvent());
 const btnEquals = document.querySelector("#btn-equal");
