@@ -89,21 +89,38 @@ function calculate(calculation) {
   return result;
 }
 
+function numberClickEvent(calculation, button) {
+  if (calculation.operator == "") {
+    calculation.firstNumber += button;
+  } else {
+    secondNumber += button;
+  }
+  return;
+}
+
 // creating programatic access to on screen elemets
+// on click listener for those elements
 const txtOutput = document.querySelector("#output");
 const btnZero = document.querySelector("#zero");
-if (calculation.operator == "") {
-  calculation.firstNumber += "0";
-}
+btnZero.addEventListener("click", numberClickEvent(calculation, "0"));
 const btnOne = document.querySelector("#one");
+btnOne.addEventListener("click", numberClickEvent(calculation, "1"));
 const btnTwo = document.querySelector("#two");
+btnTwo.addEventListener("click", numberClickEvent(calculation, "2"));
 const btnThree = document.querySelector("#three");
+btnThree.addEventListener("click", numberClickEvent(calculation, "3"));
 const btnFour = document.querySelector("#four");
+btnFour.addEventListener("click", numberClickEvent(calculation, "4"));
 const btnFive = document.querySelector("#five");
+btnFive.addEventListener("click", numberClickEvent(calculation, "5"));
 const btnSix = document.querySelector("#six");
+btnSix.addEventListener("click", numberClickEvent(calculation, "6"));
 const btnSeven = document.querySelector("#seven");
+btnSeven.addEventListener("click", numberClickEvent(calculation, "7"));
 const btnEight = document.querySelector("#eight");
+btnEight.addEventListener("click", numberClickEvent(calculation, "8"));
 const btnNine = document.querySelector("#nine");
+btnNine.addEventListener("click", numberClickEvent(calculation, "9"));
 const btnFlipSign = document.querySelector("#flip-sign");
 const btnPct = document.querySelector("#percentage");
 const btnDivide = document.querySelector("#divide");
