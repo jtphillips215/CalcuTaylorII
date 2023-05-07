@@ -2,47 +2,51 @@
 
 // variables needed for functionality of site
 let calculation = {
-  firstNumber: 0,
-  secondNumber: 0,
+  firstNumber: "0",
+  secondNumber: "0",
   operator: "",
-  result: 0,
+  result: "0",
 };
 let displayValue = "0";
 let calcHistory = [];
 
 // mathmatic operations
 function addition(calculation) {
-  calculation.result = calculation.firstNumber + calculation.secondNumber;
+  calculation.result =
+    Number(calculation.firstNumber) + Number(calculation.secondNumber);
   return;
 }
 
 function subtraction(calculation) {
-  calculation.result = calculation.firstNumber - calculation.secondNumber;
+  calculation.result =
+    Number(calculation.firstNumber) - Number(calculation.secondNumber);
   return;
 }
 
 function multiplication(calculation) {
-  calculation.result = calculation.firstNumber * calculation.secondNumber;
+  calculation.result =
+    Number(calculation.firstNumber) * Number(calculation.secondNumber);
   return;
 }
 
 function division(calculation) {
-  calculation.result = calculation.firstNumber / calculation.secondNumber;
+  calculation.result =
+    Number(calculation.firstNumber) / Number(calculation.secondNumber);
   return;
 }
 
 function percentage(calculation) {
   calculation.result =
-    (calculation.firstNumber / 100) * calculation.secondNumber;
+    (Number(calculation.firstNumber) / 100) * Number(calculation.secondNumber);
   return;
 }
 
 // clearing data between calculations
 function stateReset(calculation) {
   calculation.operator = "";
-  calculation.firstNumber = 0;
-  calculation.secondNumber = 0;
-  calculation.result = 0;
+  calculation.firstNumber = "0";
+  calculation.secondNumber = "0";
+  calculation.result = "0";
   return;
 }
 
@@ -81,12 +85,16 @@ function calculate(calculation) {
 
   calcHistory.push(calculation);
   console.table(calcHistory);
+  stateReset(calculation);
   return result;
 }
 
 // creating programatic access to on screen elemets
 const txtOutput = document.querySelector("#output");
 const btnZero = document.querySelector("#zero");
+if (calculation.operator == "") {
+  calculation.firstNumber += "0";
+}
 const btnOne = document.querySelector("#one");
 const btnTwo = document.querySelector("#two");
 const btnThree = document.querySelector("#three");
