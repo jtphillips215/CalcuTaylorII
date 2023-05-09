@@ -102,7 +102,6 @@ function operatorClickEvent(button) {
 }
 
 function decimalClickEvent() {
-  // maybe switch to operator? Maybe add zero before decimal on display?
   if (operator != "") {
     if (secondNumber.includes(".")) {
       return;
