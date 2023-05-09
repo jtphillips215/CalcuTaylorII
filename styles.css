@@ -47,9 +47,9 @@ h1{
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   width: 80%;
   height: 4em;
-  font-size: large;
   border-radius: 8px;
   background-color:#9CB464;
   box-shadow: inset 0px 0px 3px black;
