@@ -129,6 +129,7 @@ function decimalClickEvent() {
 
 function deleteClickEvent() {
   if (firstNumber == "" && secondNumber == "") {
+    updateUI();
     return;
   } else if (secondNumber != "") {
     const replacementString = secondNumber.substring(
