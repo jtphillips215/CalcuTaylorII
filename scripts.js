@@ -55,7 +55,8 @@ function calculate() {
         result = division();
         break;
       } else {
-        result = "Div by Zero Error";
+        result = "Can't Div by 0";
+        break;
       }
     case "%":
       result = percentage();
@@ -86,9 +87,13 @@ function calculate() {
 // function for number click events as it's a reusable and repeatable event
 function numberClickEvent(button) {
   if (operator == "") {
-    firstNumber += `${button}`;
+    if (firstNumber.length < 9) {
+      firstNumber += `${button}`;
+    }
   } else {
-    secondNumber += `${button}`;
+    if (secondNumber.length < 9) {
+      secondNumber += `${button}`;
+    }
   }
   updateUI();
   return;
@@ -147,11 +152,11 @@ function deleteClickEvent() {
 }
 
 function updateUI() {
-  display = `${firstNumber} ${operator} ${secondNumber}`;
+  display = `${firstNumber} ${operator}<br/>${secondNumber}`;
   if (result != "") {
-    display += ` = ${result}`;
+    display += ` =</br>${result}`;
   }
-  txtOutput.textContent = display;
+  txtOutput.innerHTML = display;
 }
 
 // creating programatic access to on screen elemets

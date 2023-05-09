@@ -49,10 +49,12 @@ h1{
   align-items: center;
   text-align: center;
   width: 80%;
-  height: 4em;
+  min-height: 9em;
   border-radius: 8px;
   background-color:#9CB464;
   box-shadow: inset 0px 0px 3px black;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 #controls {
