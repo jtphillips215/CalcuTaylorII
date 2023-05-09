@@ -106,6 +106,7 @@ function operatorClickEvent(button) {
   return;
 }
 
+// function for adding decimal to number
 function decimalClickEvent() {
   if (operator != "") {
     if (secondNumber.includes(".")) {
@@ -131,6 +132,7 @@ function decimalClickEvent() {
   }
 }
 
+// function for deleting single number. Acts as clear after calculation is completed
 function deleteClickEvent() {
   if (firstNumber == "" && secondNumber == "") {
     updateUI();
@@ -151,6 +153,7 @@ function deleteClickEvent() {
   }
 }
 
+// function updates the UI after each user interaction
 function updateUI() {
   display = `${firstNumber} ${operator}<br/>${secondNumber}`;
   if (result != "") {
