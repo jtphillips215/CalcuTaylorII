@@ -1,18 +1,25 @@
 body {
   margin: 0;
   Padding: 0;
+  background-color: navy;
 }
 
 #title {
   display: flex;
   flex: 1;
   justify-content: center;
+  color: white;
 }
 
 #calculator {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: dodgerblue;
+}
+
+#screen {
+  background-color: white;
 }
 
 #controls {
@@ -45,4 +52,5 @@ footer {
   bottom: 0%;
   left: 0%;
   width: 100%;
+  color: white;
 }
