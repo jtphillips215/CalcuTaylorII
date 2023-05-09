@@ -4,6 +4,13 @@ body {
   background-color: navy;
 }
 
+#container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
 #title {
   display: flex;
   flex: 1;
@@ -13,12 +20,22 @@ body {
 
 #calculator {
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
+  width: 20%;
+  padding: 2% 1% 3%;
+  border-radius: 16px;
   background-color: dodgerblue;
 }
 
 #screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 4em;
+  border-radius: 4px;
   background-color: white;
 }
 
@@ -32,6 +49,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1em;
+  padding-top: 2em;
 }
 
 button {
